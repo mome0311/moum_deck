@@ -1,65 +1,118 @@
-# moum_deck
+# moum deck
 
-PCだけで動作する、完全オフライン対応のオープンソースDJアプリケーションです。
-手持ちの楽曲ライブラリを、DJコントローラーやキーボード・マウスを使って直感的にミックスできます。
+**違うDJコントローラー同士で、そのままB2Bできる DJ アプリ。**
 
-> **English:** moum deck is an offline DJ application for Windows (macOS support in progress) built with Python and Qt. It supports the Native Instruments Traktor Kontrol S2 MK3 (HID, with LEDs) and the Pioneer DDJ-400 out of the box, and any other MIDI / HID controller can be mapped in the built-in Controller Setup.
+Traktor のコントローラーを使う人と、rekordbox のコントローラーを使う人が一緒にプレイしようとすると、
+これまではどちらかが機材やソフトを持ち替える必要がありました。
+moum deck なら、**それぞれが自分のコントローラーを持ち寄るだけ**で、同じ画面の上でB2Bができます。
+
+> **English:** moum deck is a free, fully offline DJ app that lets two DJs play back-to-back with **different controllers** — e.g. a Traktor Kontrol S2 MK3 and a Pioneer DDJ-400 — on one shared set of decks. Windows is supported now; macOS is in progress.
 
 ---
 
-## ✨ 主な特徴
+## 🎧 B2Bのしくみ
 
-- 🔌 **完全オフライン動作**：ネット接続不要。クラブや野外など場所を選ばずプレイ可能。
-- 🎛️ **対応機器**：
-  - **Traktor Kontrol S2 MK3**（HID対応・LED/VUメーター連動）
-  - **Pioneer DDJ-400**（プリセット完備）動作未確認
-  - その他任意の **MIDI / HID コントローラー**（自作マッピング機能搭載）動作未確認
-- 🎚️ **デッキ＆ミキサー**：
-  - 2/4 デッキ切り替え（Column / Row レイアウト）
-  - BPM自動解析、ビートグリッド、SYNC（倍テン/半テン対応）
-  - 3バンドEQ、Filter、Mixer FX (Echo / Reverb / Flanger / Crush)
-  - 8 Hot Cues、Loop、Beatjump、Quantize
-- 🌊 **視認性の高い3バンド波形**：帯域別の色分け表示 & 1〜128拍の無段階ズーム。
-- 🎵 **スマートなライブラリ管理**：
-  - フォルダスキャン、iTunes/Music XML読み込み、USBメモリ自動認識
-  - BPM / Key のバックグラウンド一括解析
-- 🖼️ **SNS用セトリ画像書き出し**：プレイリストを正方形・縦長・ストーリーズ用の画像として出力。
+```
+  あなた                              相手
+  Traktor Kontrol S2 MK3              Pioneer DDJ-400
+  （デッキ A・B を担当）                （デッキ C・D を担当）
+          \                          /
+           \                        /
+            +---- moum deck（PC）----+
+                      |
+                  マスター出力 → スピーカー
+```
+
+- **1人2デッキ、合計4デッキ**で同時にプレイできます
+- 各コントローラーのミキサーは、**自分の2デッキだけ**に効きます
+- ヘッドホンは**それぞれ自分のコントローラーの端子**でモニターします
+- インターネットは不要です
+
+---
+
+## 📋 いまの対応状況
+
+| 使い方 | 状況 |
+|---|---|
+| 1人で、コントローラー1台を使う（Traktor Kontrol S2 MK3） | ✅ 使えます |
+| 1人で、コントローラー1台を使う（Pioneer DDJ-400） | 🧪 動作未確認 |
+| 1台のPCに、違うコントローラー2台をつないでB2B | 🧪 動作未確認 |
+| PC2台をつないでB2B（LANケーブル / Wi-Fi、インターネット不要） | 🚧 開発中 |
+| その他の MIDI / HID コントローラー（自分で割り当て） | 🧪 動作未確認 |
+| macOS | 🚧 開発中 |
+
+✅ 使えます　🧪 機能はあるが検証中　🚧 開発中
+
+動作確認できた組み合わせは、このREADMEで順次お知らせします。
+
+---
+
+## ✨ 主な機能
+
+**デッキ**
+- 2デッキ / 4デッキの切り替え（横並び・縦並びのレイアウト）
+- BPMの自動解析、ビートグリッド、SYNC（倍テン・半テン対応）
+- ホットキュー8個、ループ、ビートジャンプ、クオンタイズ
+
+**ミキサー**
+- 3バンドEQ、フィルター
+- ミキサーエフェクト（Echo / Reverb / Flanger / Crush）
+
+**波形**
+- 音域ごとに色分けした波形
+- 1〜128拍まで、なめらかに拡大・縮小
+
+**ライブラリ**
+- フォルダの読み込み、iTunes／ミュージックアプリのライブラリ読み込み
+- USBメモリの自動認識
+- BPMとキーをバックグラウンドで一括解析
+
+**そのほか**
+- プレイリストを、SNS用の画像（正方形・縦長・ストーリーズ）として書き出し
+- ダークモード、日本語表示
+- コントローラーがなくても、キーボードだけで操作可能
 
 ---
 
 ## 💻 動作環境
 
-| 項目 | 詳細 |
+| 項目 | 内容 |
 |---|---|
-| **OS** | Windows 10 / 11（推奨）<br>macOS（対応作業中） |
-| **対応フォーマット** | MP3 / WAV / AIFF / FLAC<br>※AAC(m4a) / ALAC の再生には別途 [ffmpeg](https://ffmpeg.org/) が必要です |
-| **オーディオ出力** | 各種オーディオインターフェース、コントローラー内蔵オーディオ（WASAPI / DirectSound / MME） |
+| OS | Windows 10 / 11<br>macOS は開発中 |
+| 音声ファイル | MP3 / WAV / AIFF / FLAC<br>AAC（m4a）/ ALAC は、別途 [ffmpeg](https://ffmpeg.org/) のインストールが必要です |
+| 音声の出力先 | コントローラー内蔵のオーディオ、各種オーディオインターフェース |
+| インターネット | 不要 |
 
 ---
 
-## 🚀 クイックスタート（Windows）
+## 🚀 はじめかた（Windows）
 
-1. **ダウンロード**
+1. **インストール**
    [Releases](../../releases) ページから最新のインストーラーをダウンロードして実行します。
 2. **初回セットアップ**
-   起動時に開く「Setup guide」に従って、デバイスと音声出力を設定します。
-   *(※「Help › Setup guide…」からいつでも再設定可能です)*
-3. **楽曲の読み込み**
-   「File › Scan folder…」または iTunes XML を読み込んでライブラリを構築します。
+   起動すると「Setup guide」が開きます。案内に沿って、コントローラーと音声の出力先を選びます。
+   あとから変えたいときは「Help › Setup guide…」で開き直せます。
+3. **曲を読み込む**
+   「File › Scan folder…」で音楽フォルダを選ぶか、iTunes のライブラリを読み込みます。
 
 ---
 
-## ⌨️️ 既定のキーボード操作
+## ⌨️ キーボード操作
 
-コントローラーがなくても、キーボードだけで操作可能です。
-
-| キー | デッキ A | デッキ B | デッキ C | デッキ D |
+| 操作 | デッキ A | デッキ B | デッキ C | デッキ D |
 |:---:|:---:|:---:|:---:|:---:|
-| **再生 / 一時停止** | `Q` | `W` | `E` | `R` |
-| **CUE** | `A` | `S` | `D` | `F` |
-| **Hot Cue (1-4)** | `1` 〜 `4` | `5` 〜 `8` | - | - |
+| 再生 / 一時停止 | `Q` | `W` | `E` | `R` |
+| CUE | `A` | `S` | `D` | `F` |
+| ホットキュー 1〜4 | `1`〜`4` | `5`〜`8` | - | - |
 
-- **波形ズーム**：`Ctrl` + `=` / `Ctrl` + `-`
-- **ダークモード切替**：`Ctrl` + `Shift` + `D`
+- 波形の拡大・縮小：`Ctrl` + `=` / `Ctrl` + `-`
+- ダークモードの切り替え：`Ctrl` + `Shift` + `D`
 
 ---
+
+## 🗺️ これからの予定
+
+- DDJ-400 と、2台同時接続でのB2Bの動作確認
+- PC2台でのB2B（それぞれのPC・USBメモリの曲を使い、音は1台から出す）
+- macOS 対応（Apple Silicon / Intel）
+- キーロック、ホットキューの色と名前、録音などの追加
