@@ -1,5 +1,7 @@
 # moum deck
 
+**🏠 ホーム** ｜ [✨ 機能](docs/features.md) ｜ [🖥️ 画面の見かた](docs/screen.md) ｜ [⚙️ 設定と操作](docs/settings.md)
+
 **違うDJコントローラー同士で、そのままB2Bできる DJ アプリ。**
 
 ![moum deck のメイン画面](docs/images/main.png)
@@ -10,7 +12,7 @@ Traktor のコントローラーと rekordbox のコントローラーのよう�
 - 無料・オフラインで動作（Windows 10 / 11。macOS は開発中）
 - BPM・キーの自動解析、SYNC、ホットキュー、ループ、エフェクトなど、DJ に必要な機能をひととおり搭載
 
-**[⬇ 最新のインストーラー（Releases）](../../releases/latest)**　・　**[📖 画面と機能の説明](docs/guide.md)**
+**[⬇ 最新のインストーラー（Releases）](../../releases/latest)**
 
 > **English:** A free, offline DJ app that lets two DJs play back-to-back with different controllers (e.g. Traktor Kontrol S2 MK3 + Pioneer DDJ-400) on one shared set of decks.
 
@@ -63,6 +65,6 @@ USBメモリの曲に付けたキュー・ループ・プレイリストは USB 
 
 対応形式は MP3 / WAV / AIFF / FLAC です。AAC（m4a）/ ALAC だけ ffmpeg が必要です。
 
-画面の見かた、機能の一覧、設定、キーボード操作は [画面と機能の説明](docs/guide.md) にまとめています。
+機能の一覧、画面の見かた、設定とキーボード操作は、ページ上部のリンクから開けます。
 
 <sub>スクリーンショットは v2.2.0。写っている曲は撮影用のサンプルです。</sub>
